@@ -24,6 +24,7 @@ jobs:
           context: .
           platforms: linux/amd64
           outputs: type=docker,dest=image.tar
+          tags: xf22001/chatgpt-next-web:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
