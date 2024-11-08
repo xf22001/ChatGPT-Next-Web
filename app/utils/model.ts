@@ -39,9 +39,9 @@ const sortModelTable = (models: ReturnType<typeof collectModels>) =>
 
 /**
  * get model name and provider from a formatted string,
- * e.g. `gpt-4@OpenAi` or `claude-3-5-sonnet@20240620@Google`
- * @param modelWithProvider model name with provider separated by last `@` char,
- * @returns [model, provider] tuple, if no `@` char found, provider is undefined
+ * e.g. `gpt-4#OpenAi` or `claude-3-5-sonnet@20240620#Google`
+ * @param modelWithProvider model name with provider separated by last `#` char,
+ * @returns [model, provider] tuple, if no `#` char found, provider is undefined
  */
 export function getModelProvider(modelWithProvider: string): [string, string?] {
   const [model, provider] = modelWithProvider.split(/#(?!.*#)/);
@@ -66,8 +66,8 @@ export function collectModelTable(
 
   // default models
   models.forEach((m) => {
-    // using <modelName>@<providerId> as fullName
-    modelTable[`${m.name}@${m?.provider?.id}`] = {
+    // using <modelName>#<providerId> as fullName
+    modelTable[`${m.name}#${m?.provider?.id}`] = {
       ...m,
       displayName: m.name, // 'provider' is copied over if it exists
     };
@@ -121,12 +121,12 @@ export function collectModelTable(
           if (displayName && provider.providerName == "ByteDance") {
             [customModelName, displayName] = [displayName, customModelName];
           }
-          modelTable[`${customModelName}@${provider?.id}`] = {
+          modelTable[`${customModelName}#${provider?.id}`] = {
             name: customModelName,
             displayName: displayName || customModelName,
             available,
             provider, // Use optional chaining
-            sorted: CustomSeq.next(`${customModelName}@${provider?.id}`),
+            sorted: CustomSeq.next(`${customModelName}#${provider?.id}`),
           };
         }
       }
@@ -142,7 +142,7 @@ export function collectModelTableWithDefaultModel(
 ) {
   let modelTable = collectModelTable(models, customModels);
   if (defaultModel && defaultModel !== "") {
-    if (defaultModel.includes("@")) {
+    if (defaultModel.includes("#")) {
       if (defaultModel in modelTable) {
         modelTable[defaultModel].isDefault = true;
       }
@@ -198,7 +198,7 @@ export function isModelAvailableInServer(
   modelName: string,
   providerName: string,
 ) {
-  const fullName = `${modelName}@${providerName}`;
+  const fullName = `${modelName}#${providerName}`;
   const modelTable = collectModelTable(DEFAULT_MODELS, customModels);
   return modelTable[fullName]?.available === false;
 }

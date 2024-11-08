@@ -637,14 +637,14 @@ export function ChatActions(props: {
 
       {showModelSelector && (
         <Selector
-          defaultSelectedValue={`${currentModel}@${currentProviderName}`}
+          defaultSelectedValue={`${currentModel}#${currentProviderName}`}
           items={models.map((m) => ({
             title: `${m.displayName}${
               m?.provider?.providerName
                 ? " (" + m?.provider?.providerName + ")"
                 : ""
             }`,
-            value: `${m.name}@${m?.provider?.providerName}`,
+            value: `${m.name}#${m?.provider?.providerName}`,
           }))}
           onClose={() => setShowModelSelector(false)}
           onSelection={(s) => {
@@ -768,7 +768,7 @@ export function ChatActions(props: {
           multiple
           defaultSelectedValue={chatStore.currentSession().mask?.plugin}
           items={pluginStore.getAll().map((item) => ({
-            title: `${item?.title}@${item?.version}`,
+            title: `${item?.title}#${item?.version}`,
             value: item?.id,
           }))}
           onClose={() => setShowPluginSelector(false)}
