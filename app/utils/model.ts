@@ -233,23 +233,4 @@ export function isModelNotavailableInServer(
   providerNames: string | string[],
 ): boolean {
   return false;
-
-  // Check DISABLE_GPT4 environment variable
-  if (
-    process.env.DISABLE_GPT4 === "1" &&
-    isGPT4Model(modelName.toLowerCase())
-  ) {
-    return true;
-  }
-
-  const modelTable = collectModelTable(DEFAULT_MODELS, customModels);
-
-  const providerNamesArray = Array.isArray(providerNames)
-    ? providerNames
-    : [providerNames];
-  for (const providerName of providerNamesArray) {
-    const fullName = `${modelName}#${providerName.toLowerCase()}`;
-    if (modelTable?.[fullName]?.available === true) return false;
-  }
-  return true;
 }
