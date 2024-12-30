@@ -246,7 +246,7 @@ export function isModelNotavailableInServer(
     ? providerNames
     : [providerNames];
   for (const providerName of providerNamesArray) {
-    const fullName = `${modelName}@${providerName.toLowerCase()}`;
+    const fullName = `${modelName}#${providerName.toLowerCase()}`;
     if (modelTable?.[fullName]?.available === true) return false;
   }
   return true;

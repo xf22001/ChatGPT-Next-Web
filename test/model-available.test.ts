@@ -42,7 +42,7 @@ describe("isModelNotavailableInServer", () => {
   });
 
   test("support passing multiple providers, model unavailable on one of the providers will return true", () => {
-    const customModels = "-all,gpt-4@google";
+    const customModels = "-all,gpt-4#google";
     const modelName = "gpt-4";
     const providerNames = ["OpenAI", "Azure"];
     const result = isModelNotavailableInServer(
@@ -55,7 +55,7 @@ describe("isModelNotavailableInServer", () => {
 
   // FIXME: 这个测试用例有问题，需要修复
   //   test("support passing multiple providers, model available on one of the providers will return false", () => {
-  //     const customModels = "-all,gpt-4@google";
+  //     const customModels = "-all,gpt-4#google";
   //     const modelName = "gpt-4";
   //     const providerNames = ["OpenAI", "Google"];
   //     const result = isModelNotavailableInServer(
