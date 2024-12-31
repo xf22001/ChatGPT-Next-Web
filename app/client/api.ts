@@ -210,17 +210,17 @@ export function getHeaders(ignoreHeaders: boolean = false) {
 
   function getConfig() {
     const modelConfig = chatStore.currentSession().mask.modelConfig;
-    const isGoogle = modelConfig.providerName === ServiceProvider.Google;
-    const isAzure = modelConfig.providerName === ServiceProvider.Azure;
-    const isAnthropic = modelConfig.providerName === ServiceProvider.Anthropic;
-    const isBaidu = modelConfig.providerName == ServiceProvider.Baidu;
-    const isByteDance = modelConfig.providerName === ServiceProvider.ByteDance;
-    const isAlibaba = modelConfig.providerName === ServiceProvider.Alibaba;
-    const isMoonshot = modelConfig.providerName === ServiceProvider.Moonshot;
-    const isIflytek = modelConfig.providerName === ServiceProvider.Iflytek;
-    const isDeepSeek = modelConfig.providerName === ServiceProvider.DeepSeek;
-    const isXAI = modelConfig.providerName === ServiceProvider.XAI;
-    const isChatGLM = modelConfig.providerName === ServiceProvider.ChatGLM;
+    const isGoogle = false;
+    const isAzure = false;
+    const isAnthropic = false;
+    const isBaidu = false;
+    const isByteDance = false;
+    const isAlibaba = false;
+    const isMoonshot = false;
+    const isIflytek = false;
+    const isDeepSeek = false;
+    const isXAI = false;
+    const isChatGLM = false;
     const isEnabledAccessControl = accessStore.enabledAccessControl();
     const apiKey = isGoogle
       ? accessStore.googleApiKey
@@ -246,6 +246,18 @@ export function getHeaders(ignoreHeaders: boolean = false) {
         : ""
       : accessStore.openaiApiKey;
     return {
+      isGoogle,
+      isAzure,
+      isAnthropic,
+      isBaidu,
+      isByteDance,
+      isAlibaba,
+      isMoonshot,
+      isIflytek,
+      isDeepSeek,
+      isXAI,
+      isChatGLM,
+      apiKey,
       isEnabledAccessControl,
     };
   }
