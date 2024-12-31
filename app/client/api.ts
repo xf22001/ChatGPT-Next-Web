@@ -131,6 +131,39 @@ export class ClientApi {
 
   constructor(provider: ModelProvider = ModelProvider.GPT) {
     switch (provider) {
+      case ModelProvider.GeminiPro:
+        this.llm = new GeminiProApi();
+        break;
+      case ModelProvider.Claude:
+        this.llm = new ClaudeApi();
+        break;
+      case ModelProvider.Ernie:
+        this.llm = new ErnieApi();
+        break;
+      case ModelProvider.Doubao:
+        this.llm = new DoubaoApi();
+        break;
+      case ModelProvider.Qwen:
+        this.llm = new QwenApi();
+        break;
+      case ModelProvider.Hunyuan:
+        this.llm = new HunyuanApi();
+        break;
+      case ModelProvider.Moonshot:
+        this.llm = new MoonshotApi();
+        break;
+      case ModelProvider.Iflytek:
+        this.llm = new SparkApi();
+        break;
+      case ModelProvider.DeepSeek:
+        this.llm = new DeepSeekApi();
+        break;
+      case ModelProvider.XAI:
+        this.llm = new XAIApi();
+        break;
+      case ModelProvider.ChatGLM:
+        this.llm = new ChatGLMApi();
+        break;
       default:
         this.llm = new ChatGPTApi();
     }
