@@ -246,18 +246,6 @@ export function getHeaders(ignoreHeaders: boolean = false) {
         : ""
       : accessStore.openaiApiKey;
     return {
-      isGoogle,
-      isAzure,
-      isAnthropic,
-      isBaidu,
-      isByteDance,
-      isAlibaba,
-      isMoonshot,
-      isIflytek,
-      isDeepSeek,
-      isXAI,
-      isChatGLM,
-      apiKey,
       isEnabledAccessControl,
     };
   }
@@ -310,28 +298,6 @@ export function getHeaders(ignoreHeaders: boolean = false) {
 
 export function getClientApi(provider: ServiceProvider): ClientApi {
   switch (provider) {
-    case ServiceProvider.Google:
-      return new ClientApi(ModelProvider.GeminiPro);
-    case ServiceProvider.Anthropic:
-      return new ClientApi(ModelProvider.Claude);
-    case ServiceProvider.Baidu:
-      return new ClientApi(ModelProvider.Ernie);
-    case ServiceProvider.ByteDance:
-      return new ClientApi(ModelProvider.Doubao);
-    case ServiceProvider.Alibaba:
-      return new ClientApi(ModelProvider.Qwen);
-    case ServiceProvider.Tencent:
-      return new ClientApi(ModelProvider.Hunyuan);
-    case ServiceProvider.Moonshot:
-      return new ClientApi(ModelProvider.Moonshot);
-    case ServiceProvider.Iflytek:
-      return new ClientApi(ModelProvider.Iflytek);
-    case ServiceProvider.DeepSeek:
-      return new ClientApi(ModelProvider.DeepSeek);
-    case ServiceProvider.XAI:
-      return new ClientApi(ModelProvider.XAI);
-    case ServiceProvider.ChatGLM:
-      return new ClientApi(ModelProvider.ChatGLM);
     default:
       return new ClientApi(ModelProvider.GPT);
   }
